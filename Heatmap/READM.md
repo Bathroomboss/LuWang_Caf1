@@ -1,4 +1,4 @@
-# a whole pipeline generate ChIPseq profile and heatmap ---
+# a whole pipeline generate ChIPseq profile and heatmap
 # step 1 mapping to TE
 sh TEChip.pbs
 
