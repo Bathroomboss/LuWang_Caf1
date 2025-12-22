@@ -10,8 +10,7 @@ computeMatrix scale-regions -R TE.bed -S ${sample}_WT_vs_Input_log2.bw --missing
 
 zcat ${sample}_WT_vs_Input_log2_atTE.gz  |awk -v OFS=',' '{$1=$1}1' > ${sample}_WT_vs_Input_log2_atTE.csv
 
-# step 4 plot profile / heatmap
-# in R 
+# step 4 plot profile / heatmap (in R) 
 data <- read.csv('${sample}_WT_vs_Input_log2_atTE.csv',header = F)
 # plot profile
 plot(smooth.spline(colMeans(data[,7:106]),spar=0.1),type="l",lwd=2,ylab="CHIP intensity",
@@ -19,11 +18,15 @@ plot(smooth.spline(colMeans(data[,7:106]),spar=0.1),type="l",lwd=2,ylab="CHIP in
 
 # plot heatmap
 library(pheatmap)
+
 my_colors <- c(colorRampPalette(c('blue', 'white'))(50),  
                colorRampPalette(c('white', 'red'))(50))  
+
 breaks_custom <- c(seq(-3, 0, length.out = 51),  
                    seq(0, 2, length.out = 51)[-1])  
+
 hm_data <- data[, 7:106]  
+
 pheatmap(hm_data, 
          color = my_colors,
          border_color = "NA", 
