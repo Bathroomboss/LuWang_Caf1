@@ -12,11 +12,11 @@ zcat ${sample}_WT_vs_Input_log2_atTE.gz  |awk -v OFS=',' '{$1=$1}1' > ${sample}_
 
 # step 4 plot profile / heatmap (in R) 
 data <- read.csv('${sample}_WT_vs_Input_log2_atTE.csv',header = F)
-# plot profile
+## plot profile
 plot(smooth.spline(colMeans(data[,7:106]),spar=0.1),type="l",lwd=2,ylab="CHIP intensity",
      main="IP_VS_Input_atTE",xaxt='n',xlab="",cex.axis=1.3,cex.lab=1.3,col="#e31a1c")
 
-# plot heatmap
+## plot heatmap
 library(pheatmap)
 
 my_colors <- c(colorRampPalette(c('blue', 'white'))(50),  
