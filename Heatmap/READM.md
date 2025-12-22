@@ -7,6 +7,7 @@ bigwigCompare -p 24 -b1 ${IP}_TE.bw -b2 ${Input}_TE.bw --skipZeroOverZero --oper
 
 # step 3 generate matrix for plot 
 computeMatrix scale-regions -R TE.bed -S ${sample}_WT_vs_Input_log2.bw --missingDataAsZero --skipZeros -o ${sample}_WT_vs_Input_log2_atTE.gz 
+
 zcat ${sample}_WT_vs_Input_log2_atTE.gz  |awk -v OFS=',' '{$1=$1}1' > ${sample}_WT_vs_Input_log2_atTE.csv
 
 # step 4 plot profile / heatmap
